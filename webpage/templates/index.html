@@ -15,13 +15,13 @@
       crossorigin="anonymous"
     />
 
-    <title>{% block title %}Home{% endblock %}</title>
+    <title>{% block title %}Home{% endblock %}</title>  
   </head>
 
   <body>
     <nav class="navbar navbar-expand-lg nav-dark bg-dark">
       <button
-        class="navbar-toggler"
+        class="navbar-toggler"  
         type="button"
         data-toggle="collapse"
         data-target="#navbar"
@@ -30,11 +30,15 @@
       </button>
       <div class="collapse navbar-collapse" id="navbar">
         <div class=" navbar-nav">
-          <a class="nav-item nav-link" id="login" href="/login">Login</a>
-          <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
+          <a class="nav-item nav-link text-white" id="login" href="/login">Login</a>
+          <a class="nav-item nav-link text-white" id="signUp" href="/sign-up">Sign Up</a>
         </div>
       </div>
     </nav>
+    <div class="container-xl pt-3">
+      {% block content %}
+      {% endblock %}
+    </div>
 
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
