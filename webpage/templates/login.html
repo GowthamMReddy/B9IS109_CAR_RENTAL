@@ -1,7 +1,7 @@
-{% extends "index.html" %} 
+{% extends "base.html" %} 
 {% block title %}Login{% endblock %}
 {% block content %}
-<form method="post">
+<form method="POST">
     <h2 align="center">Login</h2>
     <div class="form-group">
       <label for="email">Email Address</label>
@@ -19,7 +19,7 @@
         type="password"
         class="form-control"
         id="password"
-        name="passowrd"
+        name="password"
         placeholder="Enter Password"
       />
     </div>
