@@ -10,6 +10,7 @@ class Car(db.Model):
     car_features= db.Column(db.String(500))
     bookings = db.relationship('Booking')
     
+
 class Booking(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     booking_date = db.Column(db.DateTime(timezone=True), default=func.now())
@@ -17,6 +18,7 @@ class Booking(db.Model):
     booking_to_date = db.Column(db.DateTime())
     car_id = db.Column(db.Integer, db.ForeignKey('car.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)

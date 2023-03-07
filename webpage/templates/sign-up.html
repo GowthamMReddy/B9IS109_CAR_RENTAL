@@ -1,114 +1,114 @@
 {% extends "base.html" %} {% block title %}Sign-Up{% endblock %} {% block
 content %}
-
-<form method="post">
-  <h2 align="center">Sign Up</h2>
-  <div class="form-group">
-    <label for="email">Email Address</label>
-    <input
-      type="email"
-      class="form-control"
-      id="email"
-      name="email"
-      placeholder="Enter Your Email ID"
-    />
-  </div>
-  <div class="input-group">
-  <div class="form-group">
-    <label for="firstName">First Name</label>
-    <input
-      type="text"
-      class="form-control"
-      id="firstName"
-      name="firstName"
-      placeholder="Enter Your First Name"
-    />
-  </div>
-  <div class="form-group ml-5">
-    <label for="lastName">Last Name</label>
-    <input
-      type="text"
-      class="form-control"
-      id="lastName"
-      name="lastName"
-      placeholder="Enter Your Last Name"
-    />
-  </div>
-  </div>
-  <div class="form-group">
-    <label for="ContactNo">Contact Number</label>
-    <input
-      type="number"
-      class="form-control"
-      id="contactNo"
-      name="contactNo"
-      minlength="10"
-      maxlength="10"
-      placeholder="Enter Your Phone Number"
-    />
-  </div>
-  <a class="display">Select Your Gender</a>
-  <div class="input-group mt-2">
-  <div class="form-check">
-    <input
-      type="radio"
-      class="form-check-input"
-      id="gender1"
-      name="optradio"
-      checked
-    />
-    <label for="gender1">Male</label>
-  </div>
-  <div class="form-check ml-5">
-    <input
-      type="radio"
-      class="form-check-input"
-      id="gender2"
-      name="optradio"
-    />
-    <label for="gender2">Female</label>
-  </div>
-  <div class="form-check ml-5">
-    <input
-      type="radio"
-      class="form-check-input"
-      id="gender3"
-      name="optradio"
-    />
-    <label for="gender3">Others</label>
-  </div>
-  </div>
-  <div class="form-group">
-    <label for="dob">Date Of Birth</label>
-    <input
-      type="date"
-      class="form-control"
-      id="dob"
-      name="dob"
-    />
-  </div>
-  <div class="form-group">
-    <label for="password1">Password</label>
-    <input
-      type="password"
-      class="form-control"
-      id="password1"
-      name="password1"
-      placeholder="Enter Password"
-    />
-  </div>
-  <div class="form-group">
-    <label for="password2">Confirm Password</label>
-    <input
-      type="password"
-      class="form-control"
-      id="password2"
-      name="password2"
-      placeholder="Confirm Password"
-    />
-  </div>
-  <br />
-  <button type="submit" class="btn btn-primary mb-4">Submit</button>
-</form>
-
+<div class="container-xl card pt-3 mt-4 mb-4 bg-light" style="width: 60%;">
+  <form method="post">
+    <h2 align="center">Sign Up</h2>
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        name="email"
+        placeholder="Enter Your Email ID"
+      />
+    </div>
+    <div class="input-group">
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="firstName"
+        name="firstName"
+        placeholder="Enter Your First Name"
+      />
+    </div>
+    <div class="form-group ml-5">
+      <label for="lastName">Last Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="lastName"
+        name="lastName"
+        placeholder="Enter Your Last Name"
+      />
+    </div>
+    </div>
+    <div class="form-group">
+      <label for="ContactNo">Contact Number</label>
+      <input
+        type="number"
+        class="form-control"
+        id="contactNo"
+        name="contactNo"
+        minlength="10"
+        maxlength="10"
+        placeholder="Enter Your Phone Number"
+      />
+    </div>
+    <a class="display">Select Your Gender</a>
+    <div class="input-group mt-2">
+    <div class="form-check">
+      <input
+        type="radio"
+        class="form-check-input"
+        id="gender1"
+        name="optradio"
+        checked
+      />
+      <label for="gender1">Male</label>
+    </div>
+    <div class="form-check ml-5">
+      <input
+        type="radio"
+        class="form-check-input"
+        id="gender2"
+        name="optradio"
+      />
+      <label for="gender2">Female</label>
+    </div>
+    <div class="form-check ml-5">
+      <input
+        type="radio"
+        class="form-check-input"
+        id="gender3"
+        name="optradio"
+      />
+      <label for="gender3">Others</label>
+    </div>
+    </div>
+    <div class="form-group">
+      <label for="dob">Date Of Birth</label>
+      <input
+        type="date"
+        class="form-control"
+        id="dob"
+        name="dob"
+      />
+    </div>
+    <div class="form-group">
+      <label for="password1">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password1"
+        name="password1"
+        placeholder="Enter Password"
+      />
+    </div>
+    <div class="form-group">
+      <label for="password2">Confirm Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password2"
+        name="password2"
+        placeholder="Confirm Password"
+      />
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary mb-4">Submit</button>
+  </form>
+</div>
 {% endblock %}
