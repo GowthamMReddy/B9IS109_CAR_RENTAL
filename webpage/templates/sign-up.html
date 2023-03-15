@@ -1,10 +1,12 @@
 {% extends "base.html" %} {% block title %}Sign-Up{% endblock %} {% block
 content %}
+
+
 <div class="container-xl card pt-3 mt-4 mb-4 bg-light" style="width: 60%;">
   <form method="post">
     <h2 align="center">Sign Up</h2>
     <div class="form-group">
-      <label for="email">Email Address</label>
+      <label for="email">Email Address :</label>
       <input
         type="email"
         class="form-control"
@@ -15,7 +17,7 @@ content %}
     </div>
     <div class="input-group">
     <div class="form-group">
-      <label for="firstName">First Name</label>
+      <label for="firstName">First Name :</label>
       <input
         type="text"
         class="form-control"
@@ -25,7 +27,7 @@ content %}
       />
     </div>
     <div class="form-group ml-5">
-      <label for="lastName">Last Name</label>
+      <label for="lastName">Last Name :</label>
       <input
         type="text"
         class="form-control"
@@ -35,8 +37,9 @@ content %}
       />
     </div>
     </div>
+    <div class="input-group" id="user_contact">
     <div class="form-group">
-      <label for="ContactNo">Contact Number</label>
+      <label for="ContactNo">Contact Number :</label>
       <input
         type="number"
         class="form-control"
@@ -44,51 +47,74 @@ content %}
         name="contactNo"
         minlength="10"
         maxlength="10"
-        placeholder="Enter Your Phone Number"
+        placeholder="Phone Number"
       />
     </div>
-    <a class="display">Select Your Gender</a>
-    <div class="input-group mt-2">
-    <div class="form-check">
-      <input
-        type="radio"
-        class="form-check-input"
-        id="gender1"
-        name="optradio"
-        checked
-      />
-      <label for="gender1">Male</label>
-    </div>
-    <div class="form-check ml-5">
-      <input
-        type="radio"
-        class="form-check-input"
-        id="gender2"
-        name="optradio"
-      />
-      <label for="gender2">Female</label>
-    </div>
-    <div class="form-check ml-5">
-      <input
-        type="radio"
-        class="form-check-input"
-        id="gender3"
-        name="optradio"
-      />
-      <label for="gender3">Others</label>
-    </div>
-    </div>
+    </div>   
+    
+    <div class="input-group">
+      <label class ="label mr-4" name="gender">Gender :</label> 
+      <div class="p-t-10">
+        <label class="radio-container mr-5" for="gender1">Male
+          <input
+          type="radio"
+          class="form-check-input ml-2"
+          id="gender1"
+          name="optradio"
+          value="male"
+          checked>
+         <span class="checkmark"></span>
+        </label>
+        <label class="radio-container mr-5" for="gender2">Female
+          <input
+          type="radio"
+          class="form-check-input ml-2"
+          id="gender2"
+          name="optradio"
+          value="female"
+        >
+        <span class="checkmark"></span>
+        </label>
+        <label class="radio-container mr-5" for="gender3">Others
+          <input
+          type="radio"
+          class="form-check-input ml-2"
+          id="gender3"
+          name="optradio"
+          value="others"
+        >
+        <span class="checkmark"></span>
+        </label>
+      </div>
+      </div>
+    <div class="input-group" id="user_age">
     <div class="form-group">
-      <label for="dob">Date Of Birth</label>
+      <label for="age">Age :</label>
       <input
-        type="date"
+        type="number"
         class="form-control"
-        id="dob"
-        name="dob"
+        id="age"
+        name="age"
+        min="18"
+        max="65"
       />
     </div>
+    </div>
+    <div class="input-group" id="user_dl">
+      <div class="form-group">
+        <label for="dl">Drivers Licence ID :</label>
+        <input
+          type="text"
+          class="form-control"
+          id="dl"
+          name="dl"
+          maxlength="10"
+        />
+      </div>
+    </div>
+    <div class="input-group" id="user_pwd">
     <div class="form-group">
-      <label for="password1">Password</label>
+      <label for="password1">Password :</label>
       <input
         type="password"
         class="form-control"
@@ -97,8 +123,8 @@ content %}
         placeholder="Enter Password"
       />
     </div>
-    <div class="form-group">
-      <label for="password2">Confirm Password</label>
+    <div class="form-group ml-5">
+      <label for="password2">Confirm Password :</label>
       <input
         type="password"
         class="form-control"
@@ -107,8 +133,37 @@ content %}
         placeholder="Confirm Password"
       />
     </div>
-    <br />
+    </div>
+    
+      <div class="input-group">
+        <label class ="label mr-4" name="admin">Admin :</label>
+        <div class="p-t-10">
+          <label class="radio-container m-r-45">Yes
+            <input type="radio" name="admin" value="Yes" onclick="text(0)" checked/>
+            <span class="checkmark"></span>
+          </label>
+          <label class="radio-container m-r-45">No
+            <input type="radio" name="admin" value="No" onclick="text(1)"/>
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+    
+      <div class="input-group mt-2" id="admin_code">
+        <label for="empid">Employee Id :</label>
+        <div class="form-group ml-2">
+          <input
+            type="text"
+            class="form-control"
+            id="empid"
+            name="empid"
+            maxlength="4"
+          />
+        </div>
+      </div>
+    <br/>
     <button type="submit" class="btn btn-primary mb-4">Submit</button>
   </form>
 </div>
+
 {% endblock %}

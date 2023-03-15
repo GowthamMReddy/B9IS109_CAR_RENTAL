@@ -5,7 +5,7 @@
   <form method="POST">
     <h2 align="center">Login</h2>
     <div class="form-group">
-      <label for="email">Email Address</label>
+      <label for="email">Email Address :</label>
       <input
         type="email"
         class="form-control"
@@ -14,8 +14,34 @@
         placeholder="Enter Your Email ID"
       />
     </div>
+    <div class="input-group">
+      <label class ="label mr-4" name="admin">Admin :</label>
+      <div class="p-t-10">
+        <label class="radio-container m-r-45">Yes
+          <input type="radio" name="admin" value="Yes" onclick="text(0)" checked/>
+          <span class="checkmark"></span>
+        </label>
+        <label class="radio-container m-r-45">No
+          <input type="radio" name="admin" value="No" onclick="text(1)"/>
+          <span class="checkmark"></span>
+        </label>
+      </div>
+    </div>
+  
+    <div class="input-group mt-2" id="admin_code">
+      <label for="empid">Employee Id :</label>
+      <div class="form-group ml-2">
+        <input
+          type="text"
+          class="form-control"
+          id="empid"
+          name="empid"
+          maxlength="4"
+        />
+      </div>
+    </div>
     <div class="form-group">
-      <label for="password">Password</label>
+      <label for="password">Password :</label>
       <input
         type="password"
         class="form-control"

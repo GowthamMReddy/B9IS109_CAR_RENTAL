@@ -41,8 +41,7 @@ def sign_up():
         fname = request.form.get('firstName')
         lname = request.form.get('lastName')
         contact = request.form.get('contactNo')
-        gender = request.form.get('optradio')
-        dob = request.form.get('dob')
+        age = request.form.get('age')
         pwd1 = request.form.get('password1')
         pwd2 = request.form.get('password2')
 
@@ -57,16 +56,12 @@ def sign_up():
             flash('Last Name should have atleast 3 characters.', category='error')
         elif len(contact)!=10:
             flash('Contact must have 10 numbers.', category='error')
-        elif gender==' ':
-            flash('Please select gender.', category='error')
-        elif dob==' ':
-            flash('Please select your date of birth.', category='error')
         elif len(pwd1) < 8:
             flash('Password should have atleast 8 characters.', category='error')
         elif pwd1 != pwd2:
             flash('Confirm password doesn\'t match with the password.', category='error')
         else:
-            new_user = User(email=email, first_name=fname, last_name=lname, contact=contact, password= generate_password_hash(pwd1, method='sha256'))
+            new_user = User(email=email, first_name=fname, last_name=lname, contact=contact, age=age, password= generate_password_hash(pwd1, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
