@@ -23,6 +23,7 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db, render_as_batch=True)
 
+
     from .views import views
     from .auth import auth
 
@@ -48,5 +49,8 @@ def create_database(app):
         with app.app_context():
             db.create_all()
             print ('Created Database!')
+
+
+
 
 

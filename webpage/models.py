@@ -39,5 +39,7 @@ class User(db.Model, UserMixin):
     age = db.Column(db.Integer, nullable=True)
     password = db.Column(db.String(100), nullable=False)
     create_date = db.Column(db.DateTime(timezone=True), default=func.now())
+    employee_id = db.Column(db.String(10), nullable=True)
+    drivers_license = db.Column(db.String(10), nullable=True)
     bookings = db.relationship('Booking', lazy=True)
 

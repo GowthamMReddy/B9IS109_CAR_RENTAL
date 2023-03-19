@@ -12,13 +12,20 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
+        empid = request.form.get('empid')
                                     
         user = User.query.filter_by(email=email).first()
+        emp = User.query.filter_by(email=email, employee_id = empid).first()   
+
         if user:
             if check_password_hash(user.password, password):
                 flash('Logged in successfully!', category='success')
                 login_user(user, remember=True)
-                return redirect(url_for('views.home'))
+                if emp:
+                    return redirect(url_for('views.admin')) 
+                else:
+                    return redirect(url_for('views.home')) 
+                    
             else:
                 flash('Incorrect password, Please try again.', category='error')
         else:
@@ -44,8 +51,11 @@ def sign_up():
         age = request.form.get('age')
         pwd1 = request.form.get('password1')
         pwd2 = request.form.get('password2')
+        dl = request.form.get('dl')
+        empid = request.form.get('empid')
 
         user = User.query.filter_by(email=email).first()
+        emp = User.query.filter_by(employee_id=empid).first()
         if user:
             flash('Email already exists.', category='error')
         elif len(email)<4:
@@ -54,14 +64,20 @@ def sign_up():
             flash('First Name should have atleast 3 characters.', category='error')
         elif len(lname)<3:
             flash('Last Name should have atleast 3 characters.', category='error')
+        elif contact:
+            flash('Contact should not be blank', category='error')
         elif len(contact)!=10:
             flash('Contact must have 10 numbers.', category='error')
+        elif age:
+            flash('Please add your age')
         elif len(pwd1) < 8:
             flash('Password should have atleast 8 characters.', category='error')
         elif pwd1 != pwd2:
             flash('Confirm password doesn\'t match with the password.', category='error')
+        elif emp:
+            flash('Employee Id already exists.', category='error')
         else:
-            new_user = User(email=email, first_name=fname, last_name=lname, contact=contact, age=age, password= generate_password_hash(pwd1, method='sha256'))
+            new_user = User(email=email, first_name=fname, last_name=lname, contact=contact, age=age, password= generate_password_hash(pwd1, method='sha256'), employee_id=empid, drivers_license=dl)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
