@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
+from flask_wtf.csrf import CSRFProtect
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from sqlalchemy import MetaData
@@ -15,10 +16,13 @@ naming_convention = {
 db = SQLAlchemy(metadata=MetaData(naming_convention=naming_convention))
 DB_NAME = "database.db"
 migrate = Migrate()
+csrf = CSRFProtect()
 
 def create_app():
     app=Flask(__name__)
-    app.config['SECRET_KEY']='This is my application'
+    csrf.init_app(app)
+
+    app.config['SECRET_KEY']='This is my application @Carrental'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     db.init_app(app)
     migrate.init_app(app, db, render_as_batch=True)

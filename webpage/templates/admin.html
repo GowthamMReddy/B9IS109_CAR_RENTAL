@@ -1,7 +1,182 @@
-{% extends "base.html" %} {% block title %}Sign-Up{% endblock %} {% block
+{% extends "base.html" %} {% block title %}Admin{% endblock %} {% block
 content %}
+<div class="container">
+    <div class="row g-5">
+        <!-----------------------Adding Locations-------------------------------->
+        <div class="col-12 col-md-6 col-lg-4 ">
+            <div class="container mt-3">
+                <div class="card bg-secondary" style="width:360px">
+                    <img class="card-img-top" src="{{url_for('static',filename='images/location.jpg')}}" alt="addcars" style="width:100%">
+                    <div class="card-body">
+                       <h4 class="card-title text-light" > Add Location</h4>
+                       <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#mylocation" >+ Add Location</a>
+                     </div>
+                </div> 
+            </div> 
+            <!-------------------------Modal window for adding location-------------------->
+    
+            <div class="modal fade" id="mylocation" tabindex="-1" role="dialog" aria-labelledby="mylocation1" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="mylovcation1">Add New Car</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <form method="POST">
+                        <div class="modal-body">
+                            <div class="input-group">
+                                <div class="form-group">
+                                  <label for="firstName">Car Name:</label>
+                                  <input
+                                    type="text"
+                                    class="form-control"
+                                    id="firstName"
+                                    name="firstName"
+                                    placeholder="Enter Your First Name"
+                                  />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="Car_Modal_Id" class="col-form-label">Car Model Id:</label>
+                              <input type="text" class="form-control" id="Car_Modal_Id">
+                            </div>
+                            <div class="form-group">
+                                <label for="Car_Name" class="col-form-label">Car Name:</label>
+                                <input type="text" class="form-control" id="Car_Name">
+                              </div>
+                            <div class="form-group">
+                              <label for="message-text" class="col-form-label">Message:</label>
+                              <textarea class="form-control" id="message-text"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Send message</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>                  
+        </div>
+        <!---------------------------Adding New Car's------------------------------>
+        <div class="col-12 col-md-6 col-lg-4 ">
+            <div class="container mt-3">
+                <div class="card bg-secondary" style="width:360px">
+                    <img class="card-img-top" src="{{url_for('static',filename='images/BMW.jpg')}}" alt="addcars" style="width:100%">
+                    <div class="card-body">
+                       <h4 class="card-title text-light" > Add New Car's</h4>
+                       <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#mycar" >+ Add Car</a>
+                     </div>
+                </div> 
+            </div> 
+            <!-------------------------Modal window for adding new car-------------------->
+            <div class="modal fade" id="mycar" tabindex="-1" role="dialog" aria-labelledby="mycar1" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="mycar1">Add New Car</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form method="POST">
+                    <div class="modal-body">
+                        <div class="input-group">
+                            <div class="form-group">
+                              <label for="firstName">Car Name:</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="firstName"
+                                name="firstName"
+                                placeholder="Enter Your First Name"
+                              />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="Car_Modal_Id" class="col-form-label">Car Model Id:</label>
+                          <input type="text" class="form-control" id="Car_Modal_Id">
+                        </div>
+                        <div class="form-group">
+                            <label for="Car_Name" class="col-form-label">Car Name:</label>
+                            <input type="text" class="form-control" id="Car_Name">
+                          </div>
+                        <div class="form-group">
+                          <label for="message-text" class="col-form-label">Message:</label>
+                          <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Send message</button>
+                    </div>
+                    </form>
+                  </div>
+                </div>
+            </div>         
+        </div>
+        <!-------------Displaying Bookings----------------->
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="container mt-3">
+                <div class="card bg-secondary" style="width:360px">
+                    <img class="card-img-top" src="{{url_for('static',filename='images/Bookings.jpg')}}" alt="bookings" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title text-light"> View Bookings</h4>
+                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#mybookings">Bookings</a>
+                    </div>
+                </div>
+            </div>
+            <!-------------------------Modal window for showing booking list-------------------->
+            <div class="modal fade" id="mybookings" tabindex="-1" role="dialog" aria-labelledby="mybooking1" aria-hidden="true">
+                <div class="modal-dialog modal-xl" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="mybooking1">Add New Car</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form method="POST">
+                    <div class="modal-body">
+                        <div class="input-group">
+                            <div class="form-group">
+                              <label for="firstName">Car Name:</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="firstName"
+                                name="firstName"
+                                placeholder="Enter Your First Name"
+                              />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="Car_Modal_Id" class="col-form-label">Car Model Id:</label>
+                          <input type="text" class="form-control" id="Car_Modal_Id">
+                        </div>
+                        <div class="form-group">
+                            <label for="Car_Name" class="col-form-label">Car Name:</label>
+                            <input type="text" class="form-control" id="Car_Name">
+                          </div>
+                        <div class="form-group">
+                          <label for="message-text" class="col-form-label">Message:</label>
+                          <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Send message</button>
+                    </div>
+                    </form>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<h2>this admin page</h2>
 
 {% endblock %}
 
