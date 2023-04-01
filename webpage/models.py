@@ -1,12 +1,13 @@
 from . import db 
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+from webpage import DB_NAME
+from flask_login import login_user, login_required, logout_user, current_user
 
 class Location(db.Model):
-    id= db.Column(db.Integer, primary_key=True ,autoincrement=True)
     address= db.Column(db.String(200), nullable=False)
     city= db.Column(db.String(30), nullable=False)
-    eir_code= db.Column(db.String(10), nullable=False)
+    eir_code= db.Column(db.String(10), nullable=False, unique=True, primary_key=True)
     cars= db.relationship('Car')
 
 class Car(db.Model):
@@ -15,11 +16,13 @@ class Car(db.Model):
     car_name = db.Column(db.String(150), nullable=False)
     car_no = db.Column(db.String(20), unique=True, nullable=False)
     car_capacity= db.Column(db.Integer, nullable=False)
-    car_type = db.Column (db.String, nullable=True)
+    car_type = db.Column (db.String(10), nullable=True)
     car_price= db.Column (db.Integer, nullable=False)
-    location_Id=db.Column (db.Integer, db.ForeignKey('location.id'))
+    img_id= db.Column(db.Integer, autoincrement=True)
+    img= db.Column(db.Text, nullable=False)
+    eir_code=db.Column (db.String(10), db.ForeignKey('location.eir_code'))
     bookings = db.relationship('Booking')
-    
+
 
 class Booking(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
