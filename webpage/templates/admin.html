@@ -114,6 +114,45 @@ content %}
             </div>
         </div>
     </div>
+    <div class="row g-5">
+        <h1>Available Car's</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Car Model</th>
+                    <th>Car Name</th>
+                    <th>Car Number</th>
+                    <th>Car Type</th>
+                    <th>Car Capacity</th>
+                    <th>Car Price</th>
+                    <th>Eir Code</th>
+                    <th>Image Name </th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for car in cars %}
+                <tr>
+                    <td>{{ car.car_modelid}}</td>
+                    <td>{{ car.car_name }}</td>
+                    <td>{{ car.car_no }}</td>
+                    <td>{{ car.car_type}}</td>
+                    <td>{{ car.car_capacity }}</td>
+                    <td>{{ car.car_price}}</td>
+                    <td>{{ car.eir_code }}</td>
+                    <td>{{ car.img_name}}</td>
+                    <td><img src="data:car/png;base64,{{ car.img|b64encode }}" class="img-thumbnail" /></td>
+                    <td>
+                        <form method="post" action="/delete_car">
+                          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                          <input type="hidden" name="id" value="{{ car.id }}">
+                          <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 
 

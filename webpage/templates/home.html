@@ -47,42 +47,55 @@
 </div>
 <div class="row">
     <div class="col-md-12 mt-4 bg-secondary text-white text-center">
-        <h3> Choose from our wide range of cars</h3>
+        <h2> Choose from our wide range of cars</h2>
     </div>
 </div>
-    <div class="row">
-        <div class="col-xl-6 mt-4 ml-3">
-            <img src="{{url_for('static',filename='images/Swift.jpg')}}" alt="rangerover_car"  class="d-block w-100" style="width: 100%; height: 400px;">
+<div class="row mt-4 ml-1">
+  {% for car in cars %}
+  <div class="col-md-offset-3 col-md-4">
+    <div class="card mb-4 box-shadow" style="width: 400px; height: 450px;">
+      <img class="card-img-top" src="data:car/png;base64,{{ car.img|b64encode }}" class="img-thumbnail" alt="{{car.img_name}}" style="width: 400px; height: 250px;">
+      <h3 class="card-title mx-auto">{{ car.car_name }}</h3>
+      <div class="card-body bg-secondary text-white">
+        <div class="row"> 
+            <div class="col-4">
+                <h6>Car Number:</h6>{{ car.car_no }}
+            </div>
+            <div class="col-4">
+                <h6>Capacity:</h6> {{ car.car_capacity}}
+            </div>
+            <div class="col-4">
+                <h6>Price:</h6> {{ car.car_price}} Euro/hour
+            </div>
         </div>
-        <div class="col-xl-5 mt-4 bg-light text-dark" >
-            <h4 class="mt-5"> Maruti Swift 2022 </h4></br>
-            <h6> Manual - Petrol - 5 Seats</h6> </br>
-            <h5> Price: 50£ per hour</h5> </br>
-            <button type="button" class="btn btn-secondary">Select Car</button>            
+        <div class="row"> 
+            <div class="col-4">
+                <h6> Location:</h6>{{ car.eir_code}}
+            </div>
+            <div class="col-4">
+                
+            </div>
+            <div class="col-4">
+                <h6>Capacity:</h6> {{ car.car_capacity}}
+            </div>
         </div>
+        <div class="row"> 
+            <form action="/bookings" method="POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                <div class='d-grid gap-2'>
+                   <button type="submit" class="btn btn-primary">Book Car</button>
+                </div>
+            </form>
+        </div>
+      </div>
     </div>
-    <div class="row">
-        <div class="col-xl-6 mt-4 ml-3">
-            <img src="{{url_for('static',filename='images/Swift.jpg')}}" alt="rangerover_car"  class="d-block w-100" style="width: 100%; height: 400px;">
-        </div>
-        <div class="col-xl-5 mt-4 bg-light text-dark" >
-            <h4 class="mt-5"> Maruti Swift 2022 </h4></br>
-            <h6> Manual - Petrol - 5 Seats</h6> </br>
-            <h5> Price: 50£ per hour</h5> </br>
-            <button type="button" class="btn btn-secondary">Select Car</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xl-6 mt-4 ml-3">
-            <img src="{{url_for('static',filename='images/Swift.jpg')}}" alt="rangerover_car"  class="d-block w-100" style="width: 100%; height: 400px; ">
-        </div>
-        <div class="col-xl-5 mt-4 bg-light text-dark" >
-            <h4 class="mt-5"> Maruti Swift 2022 </h4></br>
-            <h6> Manual - Petrol - 5 Seats</h6> </br>
-            <h5> Price: 50£ per hour</h5> </br>
-            <button type="button" class="btn btn-secondary">Select Car</button>
-        </div>
-    </div>
+  </div>
+  {% if loop.index % 6== 0 %}
+        <div class="row "></div>
+    {% endif %}
+  {% endfor %}
+</div>
+       
 </div>
 
 

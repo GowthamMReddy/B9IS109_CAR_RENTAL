@@ -1,3 +1,4 @@
+import base64
 from flask import Flask, url_for
 from flask_sqlalchemy import SQLAlchemy
 from os import path
@@ -22,8 +23,18 @@ def create_app():
     app=Flask(__name__)
     csrf.init_app(app)
 
+    @app.template_filter('b64encode')
+    def base64_encode(value):
+        if isinstance(value, str):
+           value = value.encode('utf-8')
+        encoded_bytes = base64.b64encode(value)
+        encoded_str = encoded_bytes.decode('utf-8')
+        return encoded_str
+
     app.config['SECRET_KEY']='This is my application @Carrental'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['UPLOAD_FOLDER']=r"static\uploads"
     
     db.init_app(app)
     migrate.init_app(app, db, render_as_batch=True)
@@ -49,6 +60,8 @@ def create_app():
         return User.query.get(int(id))
 
     return app
+
+
 
 def create_database(app):
     if not path.exists('website/' + DB_NAME):
