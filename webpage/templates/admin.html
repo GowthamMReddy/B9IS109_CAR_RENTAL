@@ -59,7 +59,9 @@ content %}
                                             maxlength="10"
                                         />
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <div class='d-grid gap-2'>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>                
@@ -74,91 +76,13 @@ content %}
                     <img class="card-img-top" src="{{url_for('static',filename='images/BMW.jpg')}}" alt="addcars" style="width:100%">
                     <div class="card-body">
                        <h4 class="card-title text-light" > Add New Car's</h4>
-                       <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#mycar" >+ Add Car</a>
+                       <form action="/addcar" method="POST">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                            <button type="submit" class="btn btn-primary" >+ Add Car</a>
+                       </form>
                      </div>
                 </div> 
-            </div> 
-            <!-------------------------Modal window for adding new car-------------------->
-            <div class="modal fade" id="mycar" tabindex="-1" role="dialog" aria-labelledby="mycar1" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="mycar1">Add New Car</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container">
-                            <form method="POST">
-                                <div class="form-group">
-                                    <label for="carmodel" class="col-form-label">Car Model ID:</label>
-                                    <input
-                                       type="text"
-                                       class="form-control"
-                                       id="carmodel"
-                                       name="carmodel"
-                                       maxlength="10"
-                                    />
-                                </div>
-                                <div class="form-group">
-                                    <label for="carname" class="col-form-label">Car Name:</label>
-                                    <input
-                                       type="text"
-                                       class="form-control"
-                                       id="carname"
-                                       name="carname"
-                                       placeholder="Enter Car Name"
-                                       maxlength="150"
-                                    />
-                                </div>
-                                <div class="form-group">
-                                  <label for="car_num" class="col-form-label">Car Number:</label>
-                                  <input 
-                                      type="text" 
-                                      class="form-control" 
-                                      id="car_num"
-                                      name="car_num"
-                                      maxlength="10"
-                                    />
-                                </div>
-                                <div class="form-group">
-                                    <label for="car_capacity" class="col-form-label">Car Capacity:</label>
-                                    <input 
-                                       type="number" 
-                                       class="form-control" 
-                                       id="car_capacity"
-                                       name="car_capacity"
-                                       max="7"
-                                       min="1"
-                                    />
-                                </div>
-                                <div class="form-group">
-                                    <label for="car_type" class="col-form-label">Car Type:</label>
-                                    <input 
-                                       type="text"
-                                       class="form-control" 
-                                       id="car_type"
-                                       name="car_type"
-                                       maxlength="6"
-                                    />
-                                </div>
-                                <div class="form-group">
-                                    <label for="car_price" class="col-form-label">Car Price:</label>
-                                    <input 
-                                       type="text"
-                                       class="form-control" 
-                                       id="car_price"
-                                       name="car_price"
-                                    />
-                                </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>         
+            </div>                    
         </div>
         <!-------------Displaying Bookings----------------->
         <div class="col-12 col-md-6 col-lg-4">

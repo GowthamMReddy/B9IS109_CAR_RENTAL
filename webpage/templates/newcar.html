@@ -1,0 +1,105 @@
+{% extends "base.html" %} {% block title %}New Car{% endblock %}
+{% block content %}
+<div class="container-lg card pt-3 mt-4 mb-4 bg-light" style="width: 60%;">
+    <form action="/newcar" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <div class="input-group">
+        <div class="form-group mr-5">
+            <label for="carmodel" class="col-form-label">Car Model ID:</label>
+            <input
+               type="text"
+               class="form-control"
+               id="carmodel"
+               name="carmodel"
+               maxlength="10"
+            />
+        </div>
+        <div class="form-group  ml-5">
+            <label for="carname" class="col-form-label">Car Name:</label>
+            <input
+               type="text"
+               class="form-control"
+               id="carname"
+               name="carname"
+               placeholder="Enter Car Name"
+               maxlength="150"
+            />
+        </div>
+        </div>
+        <div class="input-group">
+        <div class="form-group  mr-5">
+          <label for="car_num" class="col-form-label">Car Number:</label>
+          <input 
+              type="text" 
+              class="form-control" 
+              id="car_num"
+              name="car_num"
+              maxlength="10"
+            />
+        </div>
+        <div class="form-group  ml-5">
+            <label for="car_capacity" class="col-form-label">Car Capacity:</label>
+            <input 
+               type="number" 
+               class="form-control" 
+               id="car_capacity"
+               name="car_capacity"
+               max="7"
+               min="1"
+            />
+        </div>
+        </div>
+        <div class="input-group">
+        <div class="form-group  mr-5">
+            <label for="car_type" class="col-form-label">Car Type:</label>
+            <input 
+               type="text"
+               class="form-control" 
+               id="car_type"
+               name="car_type"
+               maxlength="6"
+            />
+        </div>
+        <div class="form-group ml-5">
+            <label for="car_price" class="col-form-label">Car Price:</label>
+            <input 
+               type="text"
+               class="form-control" 
+               id="car_price"
+               name="car_price"
+            />
+        </div>
+        </div>
+        <div class="form-group">
+            <label for="eir_code" class="col-form-label">EIR Code:</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="eir_code"
+                name="eir_code"
+                maxlength="10"
+            />
+        </div>
+        <div class="form-group  mr-5">
+            <label for="uploadimg" class="col-form-label">Browse Image:</label>
+            <input 
+               type="file"
+               class="form-control" 
+               id="uploadimg"
+               name="files[]"
+               multiple="true"
+            />
+        </div>
+        <div class='d-grid gap-2'>
+            <button type="submit" class="btn btn-primary mb-4">Submit</button>
+        </div>
+    </form>
+    <form action="/backadmin" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+      <div class='d-grid gap-2'>
+        <button type="submit" class="btn btn-md btn-primary mb-4">Back</button>
+      </div>
+    </form>
+</div>  
+
+{% endblock %}

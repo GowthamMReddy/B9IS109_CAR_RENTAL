@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, url_for
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_wtf.csrf import CSRFProtect
@@ -24,6 +24,7 @@ def create_app():
 
     app.config['SECRET_KEY']='This is my application @Carrental'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    
     db.init_app(app)
     migrate.init_app(app, db, render_as_batch=True)
 
@@ -33,6 +34,7 @@ def create_app():
 
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
+    
 
     from  .models import User
     create_database(app)

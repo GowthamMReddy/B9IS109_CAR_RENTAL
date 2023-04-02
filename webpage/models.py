@@ -18,7 +18,6 @@ class Car(db.Model):
     car_capacity= db.Column(db.Integer, nullable=False)
     car_type = db.Column (db.String(10), nullable=True)
     car_price= db.Column (db.Integer, nullable=False)
-    img_id= db.Column(db.Integer, autoincrement=True)
     img= db.Column(db.Text, nullable=False)
     eir_code=db.Column (db.String(10), db.ForeignKey('location.eir_code'))
     bookings = db.relationship('Booking')
