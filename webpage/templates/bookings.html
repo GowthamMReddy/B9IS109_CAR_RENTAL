@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block title %}New Car{% endblock %}
+{% extends "base.html" %} {% block title %}Bookings{% endblock %}
 {% block content %}
 
 <div class="container">
@@ -65,7 +65,19 @@
                     <label for="to_datetime">To Datetime</label>
                     <input type="datetime-local" class="form-control" id="to_datetime" name="to_datetime">
                 </div>
-                <button type="submit" class="btn btn-primary" data-id="{{car.id}}">Proceed to Payment</button>
+                <div class="mb-5">
+                    <form action="/pay" method="POST">
+                        <script
+                          src="https://checkout.stripe.com/checkout.js"
+                          class="stripe-button"
+                          data-key="pk_test_51MtBAVGixVOxjiZQwgCxiUOVcDrAasCrTflMh8I8YMZzMMMirdNik8y8HqjMId1lpudtZdVBfXadfGG2XWKYu7Gm00bnYVINoB"
+                          data-name="{{ car.car_name}}-{{ car.car_modelid}}"
+                          data-description="Click On Pay To Complete Payment"
+                          data-amount="{{car.car_price*100}}"
+                          data-currency="eur">
+                        </script>
+                      </form>
+                </div>
             </form>  
         </div>
     </div>

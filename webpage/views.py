@@ -2,6 +2,7 @@ import base64
 from datetime import datetime
 from flask import Blueprint, jsonify, render_template,  request, flash, redirect, send_from_directory, url_for, current_app
 from flask_login import login_required, current_user
+import stripe
 from .models import Location, Car, Booking, User
 from . import db
 import os
@@ -19,7 +20,8 @@ views = Blueprint('views',__name__)
 @login_required
 def home():
     cars= Car.query.all()
-    return render_template("home.html", user=current_user, cars=cars)
+    bookings=Booking.query.all()
+    return render_template("home.html", user=current_user, cars=cars, bookings=bookings)
 
 ##---------------Adding location to DB--------------  
 
@@ -49,8 +51,9 @@ def admin():
             return redirect(url_for('views.admin')) 
     
     cars=Car.query.all()
+    bookings=Booking.query.all()
      
-    return render_template("admin.html", user=current_user, cars=cars)
+    return render_template("admin.html", user=current_user, cars=cars, bookings=bookings)
 
 @views.route('/addcar',methods=['GET','POST'])
 @login_required
@@ -117,7 +120,8 @@ def newcar():
 @login_required
 def backadmin():
     cars=Car.query.all()
-    return render_template("admin.html", user=current_user, cars=cars)
+    bookings=Booking.query.all()
+    return render_template("admin.html", user=current_user, cars=cars, bookings=bookings)
 
 ##---------------Delete Cars--------------  
 
@@ -144,12 +148,25 @@ def bookings(id):
     if request.method == 'POST':
          email = request.form['email']
          carmodelid= request.form['model']
-         from_datetime = datetime.strptime(request.form['from_datetime'], '%Y-%m-%dT%H:%M')
-         to_datetime = datetime.strptime(request.form['to_datetime'], '%Y-%m-%dT%H:%M')
-         newbooking = Booking (email=email, car_modelid=carmodelid, booking_from_date=from_datetime, booking_to_date=to_datetime)
-         db.session.add(newbooking)
-         db.session.commit()
-         return redirect(url_for('views.payments'))
+         start_datetime=request.form['from_datetime']
+         end_datetime=request.form['to_datetime']
+         if start_datetime==None:
+             flash('Please select From DateTime', category='error')
+         elif end_datetime==None:
+             flash('Please select To DateTime', category='error')
+             return redirect(url_for('views.payment'))
+             
+             
+         from_datetime = datetime.strptime(start_datetime, '%Y-%m-%dT%H:%M')
+         to_datetime = datetime.strptime(end_datetime, '%Y-%m-%dT%H:%M')
+
+         if from_datetime==None or to_datetime==None :
+            flash('Please select From DateTime and To DateTime', category='error')
+         else:
+             newbooking = Booking (email=email, car_modelid=carmodelid, booking_from_date=from_datetime, booking_to_date=to_datetime)
+             db.session.add(newbooking)
+             db.session.commit()
+             return redirect(url_for('views.payment'))
          
     
     car = Car.query.get(id)
@@ -159,8 +176,8 @@ def bookings(id):
     return render_template('bookings.html', user=current_user, car=car, email=email)
 
 #----------navigate to payment page-------
-@views.route('/payments',methods=['GET','POST'])
+@views.route('/payment',methods=['GET','POST'])
 @login_required
-def payments():
+def payment():
     return render_template("payment.html", user=current_user)
 

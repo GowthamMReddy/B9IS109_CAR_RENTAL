@@ -106,9 +106,27 @@ content %}
                       </button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST">
-
-                        </form>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Car Model</th>
+                                        <th>Email</th>
+                                        <th>Booking From Date</th>
+                                        <th>Booking To Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for booking in bookings %}
+                                    <tr>
+                                        <td>{{ booking.car_modelid}}</td>
+                                        <td>{{ booking.email }}</td>
+                                        <td>{{ booking.booking_from_date }}</td>
+                                        <td>{{ booking.booking_to_date}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                    </div>
                     </div>
                 </div>
             </div>

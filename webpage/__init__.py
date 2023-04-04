@@ -1,4 +1,5 @@
 import base64
+import os
 from flask import Flask, url_for
 from flask_sqlalchemy import SQLAlchemy
 from os import path
@@ -7,6 +8,8 @@ from flask_login import LoginManager
 from flask_migrate import Migrate
 from sqlalchemy import MetaData
 from datetime import datetime
+
+import stripe
 
 naming_convention = {
     "ix": 'ix_%(column_0_label)s',
@@ -40,6 +43,7 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['UPLOAD_FOLDER']=r"static\uploads"
+    stripe.api_key = os.environ.get('STRIPE_SECRET_KEY')
     
     db.init_app(app)
     migrate.init_app(app, db, render_as_batch=True)
