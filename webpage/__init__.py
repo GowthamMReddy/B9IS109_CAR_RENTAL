@@ -6,6 +6,7 @@ from flask_wtf.csrf import CSRFProtect
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from sqlalchemy import MetaData
+from datetime import datetime
 
 naming_convention = {
     "ix": 'ix_%(column_0_label)s',
@@ -30,6 +31,10 @@ def create_app():
         encoded_bytes = base64.b64encode(value)
         encoded_str = encoded_bytes.decode('utf-8')
         return encoded_str
+    
+    @app.template_filter('datetimeformat')
+    def datetimeformat(value, format='%Y-%m-%d %H:%M'):
+      return value.strftime(format)
 
     app.config['SECRET_KEY']='This is my application @Carrental'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'

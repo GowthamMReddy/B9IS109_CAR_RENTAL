@@ -20,6 +20,22 @@
       crossorigin="anonymous"
     />
 
+    <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" 
+      integrity="sha512-vKanlgAxfgcT7VZSxMsoLezV9mKjC6/Af4d3qsvCUbV8zdsswQGg7SrpE+LeuVJX9jKkC4y4Iq3+UCPH7J0w1Q==" 
+      crossorigin="anonymous" 
+      referrerpolicy="no-referrer" />
+
+
+    <link 
+       rel="stylesheet"
+       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" 
+       integrity="sha512-hN2QFnHQST8YZvY43ewSRZrE3jgmW26n8zv2+KN1/sRmU6SWWpM8wv6YDZpF6ZbO9O1hKKgYZvKj36a2Q1Ihbg==" 
+       crossorigin="anonymous" 
+       referrerpolicy="no-referrer" />
+
+
     <title>{% block title %}Home{% endblock %}</title>  
 
     <script>
@@ -96,6 +112,8 @@
       })
     </script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -129,12 +147,25 @@
               }
           }
       });
-  </script>
+     </script>
+  <script
+    type="text/javascript"
+    src="{{ url_for('static', filename='index.js')}}"
+  ></script>
+  <script  
+  src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js" 
+  integrity="sha512-9V7LcMv4GJ7Fgy3qJnV7m2wvzNl7If2fJz9L+dBk/krBIXBBcGv5qw5o5jZrzw1FzBJ1wIJw8DeDBBQyKjSyCQ==" 
+  crossorigin="anonymous" 
+  referrerpolicy="no-referrer"></script>
 
-    <script
-      type="text/javascript"
-      src="{{ url_for('static', filename='index.js')}}"
-    ></script>
-    
+  <script 
+   src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" 
+   integrity="sha512-QACw8g+hjC3Fy6N3qlFOzjF8XhW2zZL7VZ/kkkjvG8V4W4Txu+b7djkpS1Kvbm8WbymQzQV7zxzjKwvV8W4fLw==" 
+   crossorigin="anonymous" 
+   referrerpolicy="no-referrer"></script>
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  
+
+   
   </body>
 </html>

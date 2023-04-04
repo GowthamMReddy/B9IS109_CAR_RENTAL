@@ -29,8 +29,8 @@ class Booking(db.Model):
     booking_date = db.Column(db.DateTime(timezone=True), default=func.now())
     booking_from_date = db.Column(db.DateTime(), nullable=False)
     booking_to_date = db.Column(db.DateTime(), nullable=False)
-    car_id = db.Column(db.Integer, db.ForeignKey('car.id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    car_modelid = db.Column(db.String(20), db.ForeignKey('car.car_modelid'))
+    email = db.Column(db.String(100), db.ForeignKey('user.email'))
 
 
 class User(db.Model, UserMixin):

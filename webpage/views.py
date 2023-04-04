@@ -1,11 +1,19 @@
 import base64
-from flask import Blueprint, render_template,  request, flash, redirect, send_from_directory, url_for, current_app
+from datetime import datetime
+from flask import Blueprint, jsonify, render_template,  request, flash, redirect, send_from_directory, url_for, current_app
 from flask_login import login_required, current_user
-from .models import Location, Car
+from .models import Location, Car, Booking, User
 from . import db
 import os
+from flask_wtf import FlaskForm
+from wtforms import StringField, DateTimeField
+from wtforms.validators import DataRequired
+import requests
+import json
+
 
 views = Blueprint('views',__name__)
+
 
 @views.route('/')
 @login_required
@@ -125,10 +133,34 @@ def delete_car():
     flash('Car is deleted successfully', 'success')
     return redirect(url_for('views.admin'))
 
-##---------------Navigate to Booking Page-------------- 
-@views.route('/bookings',methods=['GET','POST'])
+
+
+#-------------view bookings------------------
+@views.route('/bookings/<int:id>', methods=['GET', 'POST'])
 @login_required
-def bookings():
-    cars=Car.query.all()
-    return render_template("bookings.html", user=current_user, cars=cars) 
+def bookings(id):
+    
+
+    if request.method == 'POST':
+         email = request.form['email']
+         carmodelid= request.form['model']
+         from_datetime = datetime.strptime(request.form['from_datetime'], '%Y-%m-%dT%H:%M')
+         to_datetime = datetime.strptime(request.form['to_datetime'], '%Y-%m-%dT%H:%M')
+         newbooking = Booking (email=email, car_modelid=carmodelid, booking_from_date=from_datetime, booking_to_date=to_datetime)
+         db.session.add(newbooking)
+         db.session.commit()
+         return redirect(url_for('views.payments'))
+         
+    
+    car = Car.query.get(id)
+    car.img = base64.b64encode(car.img).decode('utf-8')
+    email=current_user.email
+
+    return render_template('bookings.html', user=current_user, car=car, email=email)
+
+#----------navigate to payment page-------
+@views.route('/payments',methods=['GET','POST'])
+@login_required
+def payments():
+    return render_template("payment.html", user=current_user)
 
